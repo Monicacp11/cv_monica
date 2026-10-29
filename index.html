@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bloqueo de indexación para motores de búsqueda -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Mónica Coronado Prats - Candidatura Administrativo General</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; padding: 0 !important; }
+      .sheet-a4 { box-shadow: none !important; border: none !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; }
+    }
+    .tab-btn.active {
+      border-color: #1e3a8a;
+      color: #1e3a8a;
+      background-color: #eff6ff;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-8 px-4">
+
+  <!-- Barra superior de utilidades -->
+  <div class="max-w-4xl mx-auto mb-4 no-print flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
+      <span class="text-sm font-semibold text-slate-700">Expediente Digital · Convocatoria Administrativo General</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="assets/cv-monica-coronado.pdf" download class="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 transition shadow-sm">
+        <i class="fa-solid fa-file-arrow-down"></i> Descargar CV en PDF
+      </a>
+      <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-medium rounded-lg flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-print"></i> Imprimir
+      </button>
+      <button onclick="toggleJsonEditor()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-300 flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-code"></i> JSON
+      </button>
+    </div>
+  </div>
+
+  <!-- Editor / Visor JSON reactivo -->
+  <div id="jsonModal" class="max-w-4xl mx-auto mb-6 no-print hidden bg-slate-900 text-slate-100 p-4 rounded-xl shadow-lg border border-slate-700">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Datos JSON (reactivos)</span>
+      <button onclick="applyJsonUpdate()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded transition">
+        Aplicar cambios
+      </button>
+    </div>
+    <textarea id="rawJsonTextarea" class="w-full h-64 bg-slate-950 text-emerald-400 font-mono text-xs p-3 rounded border border-slate-800 focus:outline-none"></textarea>
+  </div>
+
+  <!-- Contenedor principal de la hoja A4 -->
+  <main class="sheet-a4 max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200/80 overflow-hidden">
+    
+    <!-- Encabezado con datos del candidato -->
+    <header class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="relative">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-blue-400/40 bg-slate-800 flex items-center justify-center shadow-lg">
+            <img id="avatarImg" src="assets/foto-monica.jpg" alt="Mónica Coronado" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Monica+Coronado&background=1e293b&color=93c5fd&size=256';" class="w-full h-full object-cover">
+          </div>
+          <span class="absolute -bottom-2 -right-2 bg-emerald-500 text-[10px] uppercase font-black px-2 py-0.5 rounded-full text-white shadow">Disponible</span>
+        </div>
+
+        <div class="flex-1 text-center sm:text-left space-y-2">
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-200 text-xs font-medium border border-blue-400/20">
+            <i class="fa-solid fa-landmark text-xs"></i>
+            <span id="targetEntity">Ayuntamiento de Arroyo de la Encomienda</span>
+          </div>
+          <h1 id="fullName" class="text-2xl sm:text-3xl font-extrabold tracking-tight">Mónica Coronado Prats</h1>
+          <p id="targetPost" class="text-sm sm:text-base text-blue-200 font-medium">Administrativa · Candidata a Administrativo General</p>
+          
+          <div class="pt-2 flex flex-wrap justify-center sm:justify-start gap-4 text-xs text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-blue-400"></i> <span id="contactPhone">+34 608 938 717</span></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-envelope text-blue-400"></i> <span id="contactEmail">monicaprats11@gmail.com</span></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-blue-400"></i> <span id="contactLocation">Arroyo de la Encomienda (Valladolid)</span></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Barra de Pestañas -->
+    <nav class="no-print border-b border-slate-200 bg-slate-50 px-4 sm:px-8 flex overflow-x-auto gap-2">
+      <button onclick="switchTab('resumen')" class="tab-btn active px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 whitespace-nowrap transition" data-tab="resumen">
+        <i class="fa-regular fa-id-card mr-1.5"></i> Perfil Profesional
+      </button>
+      <button onclick="switchTab('video')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="video">
+        <i class="fa-solid fa-circle-play mr-1.5 text-red-600"></i> Vídeo CV
+      </button>
+      <button onclick="switchTab('experiencia')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="experiencia">
+        <i class="fa-solid fa-briefcase mr-1.5"></i> Experiencia Laboral
+      </button>
+      <button onclick="switchTab('formacion')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="formacion">
+        <i class="fa-solid fa-graduation-cap mr-1.5"></i> Formación Oficial y Títulos
+      </button>
+      <button onclick="switchTab('certificaciones')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="certificaciones">
+        <i class="fa-solid fa-stamp mr-1.5"></i> Cursos CyL Digital (57,5 h)
+      </button>
+      <button onclick="switchTab('competencias')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="competencias">
+        <i class="fa-solid fa-sliders mr-1.5"></i> Competencias
+      </button>
+    </nav>
+
+    <!-- Contenido dinámico -->
+    <div class="p-6 sm:p-8 space-y-6">
+      
+      <!-- PESTAÑA 1: RESUMEN -->
+      <section id="tab-resumen" class="tab-content space-y-4">
+        <div class="flex items-center gap-2 border-b border-slate-200 pb-2">
+          <i class="fa-solid fa-quote-left text-blue-800 text-lg"></i>
+          <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Extracto Profesional</h2>
+        </div>
+        <p id="profileSummary" class="text-sm leading-relaxed text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200"></p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          <div class="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100 flex items-start gap-3">
+            <i class="fa-solid fa-building-flag text-blue-800 text-lg mt-0.5"></i>
+            <div>
+              <p class="text-xs font-bold text-blue-950">Experiencia Local</p>
+              <p class="text-xs text-slate-600">Conocimiento directo de la operativa del Ayto. de Arroyo.</p>
+            </div>
+          </div>
+          <div class="p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-100 flex items-start gap-3">
+            <i class="fa-solid fa-file-invoice text-emerald-800 text-lg mt-0.5"></i>
+            <div>
+              <p class="text-xs font-bold text-emerald-950">Factura Electrónica</p>
+              <p class="text-xs text-slate-600">Cualificación específica y actualizada en dic. 2025.</p>
+            </div>
+          </div>
+          <div class="p-3.5 bg-indigo-50/60 rounded-xl border border-indigo-100 flex items-start gap-3">
+            <i class="fa-solid fa-user-check text-indigo-800 text-lg mt-0.5"></i>
+            <div>
+              <p class="text-xs font-bold text-indigo-950">Atención Ciudadana</p>
+              <p class="text-xs text-slate-600">Atención multicanal y resolución directa de trámites.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 2: VÍDEO CV -->
+      <section id="tab-video" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-video text-blue-800 text-lg"></i>
+            <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Presentación en Vídeo</h2>
+          </div>
+          <span class="text-xs bg-red-100 text-red-800 font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> 60 - 90 seg
+          </span>
+        </div>
+
+        <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-800 max-w-2xl mx-auto">
+          <div id="videoContainer" class="aspect-video w-full bg-black flex items-center justify-center">
+            <!-- Reproductor inyectado dinámicamente -->
+          </div>
+          <div class="p-4 bg-slate-950 text-slate-300 text-xs flex items-center justify-between gap-4">
+            <p id="videoDescription" class="leading-relaxed"></p>
+            <span class="text-[11px] text-slate-400 whitespace-nowrap"><i class="fa-solid fa-shield-halved text-blue-400 mr-1"></i> Formato oficial</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 3: EXPERIENCIA -->
+      <section id="tab-experiencia" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+          <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Trayectoria Administrativa</h2>
+          <span class="text-[11px] text-slate-500 italic">Ordenada por idoneidad para el puesto</span>
+        </div>
+        <div id="experienceList" class="space-y-4"></div>
+      </section>
+
+      <!-- PESTAÑA 4: FORMACIÓN OFICIAL Y TÍTULOS -->
+      <section id="tab-formacion" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+          <div>
+            <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Formación Académica Reglada</h2>
+            <p class="text-xs text-slate-500">Títulos oficiales del Ministerio de Educación / FP</p>
+          </div>
+          <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-semibold">Cotejo oficial</span>
+        </div>
+        <div id="regladaList" class="grid grid-cols-1 gap-3"></div>
+      </section>
+
+      <!-- PESTAÑA 5: CURSOS CYL DIGITAL -->
+      <section id="tab-certificaciones" class="tab-content hidden space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-2 gap-1">
+          <div>
+            <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Formación Continua y Administración Electrónica</h2>
+            <p class="text-xs text-slate-500">Expedida por la Junta de Castilla y León · Verificable telemáticamente</p>
+          </div>
+          <span class="inline-flex items-center gap-1 self-start sm:self-auto text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">
+            <i class="fa-solid fa-clock"></i> 57,5 Horas Totales
+          </span>
+        </div>
+        <div id="noRegladaList" class="space-y-2.5"></div>
+      </section>
+
+      <!-- PESTAÑA 6: COMPETENCIAS -->
+      <section id="tab-competencias" class="tab-content hidden space-y-4">
+        <div class="border-b border-slate-200 pb-2">
+          <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Competencias y Habilidades</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            <h3 class="text-xs font-bold text-blue-900 uppercase flex items-center gap-2">
+              <i class="fa-solid fa-microchip"></i> Técnicas y Digitales
+            </h3>
+            <div id="skillsDigital" class="flex flex-wrap gap-1.5"></div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            <h3 class="text-xs font-bold text-slate-900 uppercase flex items-center gap-2">
+              <i class="fa-solid fa-folder-tree"></i> Gestión y Procedimiento
+            </h3>
+            <div id="skillsGestion" class="flex flex-wrap gap-1.5"></div>
+          </div>
+        </div>
+
+        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-3 bg-white rounded-lg border border-slate-200">
+            <h4 class="text-xs font-bold text-slate-700 mb-2">Idiomas</h4>
+            <div id="skillsIdiomas" class="flex flex-wrap gap-2 text-xs"></div>
+          </div>
+          <div class="p-3 bg-white rounded-lg border border-slate-200">
+            <h4 class="text-xs font-bold text-slate-700 mb-2">Otros datos de interés</h4>
+            <div id="skillsOtros" class="flex flex-wrap gap-2 text-xs"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Pie -->
+    <footer class="bg-slate-50 border-t border-slate-200 p-4 px-6 sm:px-8 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>Candidatura oficial: <strong>Administrativo General</strong></span>
+      <span>Documentación y diplomas acreditativos cotejables telemáticamente</span>
+    </footer>
+  </main>
+
+  <script>
+    let cvData = {
+      "objetivo": {
+        "puesto": "Administrativo General",
+        "entidad": "Ayuntamiento de Arroyo de la Encomienda"
+      },
+      "perfil": {
+        "nombre": "Mónica",
+        "apellidos": "Coronado Prats",
+        "titular": "Administrativa",
+        "foto_url": "assets/foto-monica.jpg",
+        "contacto": {
+          "telefono": "+34 608 938 717",
+          "email": "monicaprats11@gmail.com",
+          "localidad": "Arroyo de la Encomienda",
+          "provincia": "Valladolid"
+        }
+      },
+      "video_cv": {
+        "activo": true,
+        "tipo": "local",
+        "url": "assets/video-cv.mp4",
+        "poster": "assets/foto-monica.jpg",
+        "descripcion": "Presentación personal y profesional de Mónica Coronado Prats: motivación, competencias administrativas y orientación al servicio público en el Ayuntamiento de Arroyo de la Encomienda."
+      },
+      "extracto": "Administrativa con doble titulación técnica en Gestión Administrativa y Asistencia a la Dirección. Aporta experiencia directa en la administración municipal (Ayuntamiento de Arroyo de la Encomienda) en tramitación de subvenciones y registro/atención ciudadana, combinada con gestión administrativa en el sector privado (proveedores, nóminas y tesorería). Formación continuada en administración electrónica, facturación telemática y ofimática avanzada acreditada por la Junta de Castilla y León.",
+      "experiencia": [
+        {
+          "entidad": "Ayuntamiento de Arroyo de la Encomienda",
+          "puesto": "Administrativa",
+          "sector": "público",
+          "periodo_str": "Periodo pendiente de completar",
+          "ubicacion": "Arroyo de la Encomienda (Valladolid)",
+          "destacado": true,
+          "responsabilidades": [
+            "Tramitación, registro y seguimiento de expedientes de subvención en el ámbito municipal.",
+            "Atención presencial y telefónica a la ciudadanía en la resolución de trámites e información general.",
+            "Apoyo logístico y organizativo en eventos municipales aplicando directrices de protocolo institucional y sanitario."
+          ]
+        },
+        {
+          "entidad": "Domusvi",
+          "puesto": "Asistente a la Dirección",
+          "sector": "privado",
+          "periodo_str": "Periodo pendiente de completar",
+          "ubicacion": "Valladolid",
+          "destacado": false,
+          "responsabilidades": [
+            "Gestión integral de facturación, recepción y tramitación de pedidos a proveedores.",
+            "Confección y apoyo en la elaboración de nóminas y control administrativo de personal.",
+            "Gestión de centralita, coordinación de agendas y soporte organizativo a la gerencia."
+          ]
+        },
+        {
+          "entidad": "Agro Castilla y León",
+          "puesto": "Administrativa",
+          "sector": "privado",
+          "periodo_str": "Periodo pendiente de completar",
+          "ubicacion": "Valladolid",
+          "destacado": false,
+          "responsabilidades": [
+            "Recepción y atención a clientes, colaboradores y proveedores.",
+            "Diseño, alimentación y mantenimiento de bases de datos y hojas de cálculo en Microsoft Excel.",
+            "Organización, catalogación y archivo de expedientes y documentación contable."
+          ]
+        },
+        {
+          "entidad": "La Coture",
+          "puesto": "Administración Comercial y Atención al Cliente",
+          "sector": "privado",
+          "periodo_str": "Periodo pendiente de completar",
+          "ubicacion": "Valladolid",
+          "destacado": false,
+          "responsabilidades": [
+            "Gestión de agenda, reservas de citas y atención telefónica de clientes.",
+            "Administración del catálogo digital y back-office de la tienda online."
+          ]
+        }
+      ],
+      "formacion_reglada": [
+        {
+          "titulo": "Técnico Superior en Asistencia a la Dirección",
+          "centro": "IES Arca Real",
+          "nivel": "Grado Superior (Nivel MECES 1 / EQF 5)",
+          "periodo": "2019 – 2021",
+          "documento_url": "assets/ts-asistencia-direccion.pdf"
+        },
+        {
+          "titulo": "Técnico en Gestión Administrativa",
+          "centro": "La Salle",
+          "nivel": "Grado Medio",
+          "periodo": "2017 – 2019",
+          "documento_url": "assets/tecnico-gestion-adm.pdf"
+        },
+        {
+          "titulo": "Técnico Superior en Patronaje y Moda",
+          "centro": "Alcazarén",
+          "nivel": "Grado Superior",
+          "periodo": "2025",
+          "documento_url": "assets/ts-patronaje-moda.pdf"
+        }
+      ],
+      "formacion_no_reglada": [
+        {
+          "titulo": "LibreOffice Impress",
+          "tipo": "Curso oficial con aprovechamiento",
+          "horas": 40,
+          "fecha": "Diciembre 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/b28c581d-5e3b-4292-a9fb-229900171290"
+        },
+        {
+          "titulo": "Crea y maneja documentos PDF",
+          "tipo": "Curso oficial con aprovechamiento",
+          "horas": 10,
+          "fecha": "Diciembre 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/fb15059f-011a-4beb-971b-69f6330ddf63"
+        },
+        {
+          "titulo": "Gestión digital de la facturación electrónica",
+          "tipo": "Seminario especializado",
+          "horas": 2.5,
+          "fecha": "15 Diciembre 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/f902a460-f9e8-4be1-8755-a3769415cd03"
+        },
+        {
+          "titulo": "Procedimientos, obligaciones legales y recursos online en facturación electrónica",
+          "tipo": "Seminario especializado",
+          "horas": 2.5,
+          "fecha": "16 Diciembre 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/995d7923-f1a1-49eb-aba3-8e777fd1fb23"
+        },
+        {
+          "titulo": "Herramientas digitales, automatización y seguridad aplicada a la facturación electrónica",
+          "tipo": "Seminario especializado",
+          "horas": 2.5,
+          "fecha": "17 Diciembre 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/ef44f9c6-ec9f-490b-b951-c23fd04a6adf"
+        }
+      ],
+      "habilidades": {
+        "tecnicas_digitales": [
+          "Facturación electrónica y telemática",
+          "Microsoft Excel avanzado",
+          "Paquete Office integral",
+          "LibreOffice / Software Libre",
+          "Gestión, edición y ensamblado de PDF",
+          "Mecanografía profesional",
+          "Edición multimedia de soporte"
+        ],
+        "gestion": [
+          "Tramitación y archivo de expedientes y subvenciones",
+          "Atención ciudadana presencial y telefónica",
+          "Archivo y catalogación documental",
+          "Facturación, compras y relación con proveedores",
+          "Confección y control de nóminas",
+          "Protocolo y organización de eventos municipales"
+        ],
+        "idiomas": [
+          { "idioma": "Español", "nivel": "Nativo" },
+          { "idioma": "Inglés", "nivel": "Nivel Intermedio" },
+          { "idioma": "Francés", "nivel": "Nivel Básico" }
+        ],
+        "otros": ["Permiso de Conducir B", "Vehículo propio"]
+      }
+    };
+
+    function renderUI() {
+      document.getElementById('rawJsonTextarea').value = JSON.stringify(cvData, null, 2);
+      document.getElementById('profileSummary').innerText = cvData.extracto;
+
+      // Render Vídeo CV
+      const vContainer = document.getElementById('videoContainer');
+      document.getElementById('videoDescription').innerText = cvData.video_cv.descripcion;
+      if (cvData.video_cv.tipo === 'local') {
+        vContainer.innerHTML = `
+          <video controls poster="${cvData.video_cv.poster}" class="w-full h-full object-contain">
+            <source src="${cvData.video_cv.url}" type="video/mp4">
+            Tu navegador no soporta reproducción de vídeo HTML5.
+          </video>
+        `;
+      } else if (cvData.video_cv.tipo === 'youtube') {
+        vContainer.innerHTML = `
+          <iframe class="w-full h-full" src="${cvData.video_cv.url}" title="Vídeo CV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+      }
+
+      // Render Experiencia
+      const expContainer = document.getElementById('experienceList');
+      expContainer.innerHTML = cvData.experiencia.map(exp => `
+        <div class="p-4 rounded-xl border ${exp.destacado ? 'border-blue-300 bg-blue-50/40' : 'border-slate-200 bg-white'} space-y-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-800 text-sm">${exp.puesto}</span>
+              ${exp.sector === 'público' ? '<span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">ADMINISTRACIÓN PÚBLICA</span>' : ''}
+            </div>
+            <span class="text-xs font-semibold text-slate-500">${exp.periodo_str}</span>
+          </div>
+          <div class="text-xs font-medium text-blue-900">${exp.entidad} ${exp.ubicacion ? '· ' + exp.ubicacion : ''}</div>
+          <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 pt-1">
+            ${exp.responsabilidades.map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+
+      // Render Reglada con descarga de PDF
+      const regContainer = document.getElementById('regladaList');
+      regContainer.innerHTML = cvData.formacion_reglada.map(f => `
+        <div class="p-3.5 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <div class="text-sm font-bold text-slate-800">${f.titulo}</div>
+            <div class="text-xs text-slate-500 font-medium">${f.centro} · <span class="text-blue-700">${f.nivel}</span></div>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">${f.periodo}</span>
+            ${f.documento_url ? `
+              <a href="${f.documento_url}" target="_blank" class="no-print inline-flex items-center gap-1.5 text-xs text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-md border border-blue-200 transition font-semibold">
+                <i class="fa-solid fa-file-pdf text-red-600"></i> Ver Título PDF
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+
+      // Render No Reglada
+      const noRegContainer = document.getElementById('noRegladaList');
+      noRegContainer.innerHTML = cvData.formacion_no_reglada.map(c => `
+        <div class="p-3 bg-white rounded-xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-slate-300 transition">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-800">${c.titulo}</span>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${c.horas >= 10 ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-slate-100 text-slate-600'}">${c.horas} h</span>
+            </div>
+            <div class="text-[11px] text-slate-500">${c.entidad} · ${c.fecha}</div>
+          </div>
+          ${c.verificacion_url ? `
+            <a href="${c.verificacion_url}" target="_blank" rel="noopener noreferrer" class="no-print inline-flex items-center gap-1.5 text-xs text-blue-700 hover:text-blue-900 font-semibold bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 hover:bg-blue-100 transition self-start sm:self-auto">
+              <i class="fa-solid fa-certificate text-[11px]"></i> Validar QR Junta CyL
+            </a>
+          ` : ''}
+        </div>
+      `).join('');
+
+      // Render Habilidades
+      document.getElementById('skillsDigital').innerHTML = cvData.habilidades.tecnicas_digitales.map(s => `
+        <span class="bg-blue-100/70 text-blue-900 text-xs px-2.5 py-1 rounded-md font-medium">${s}</span>
+      `).join('');
+      
+      document.getElementById('skillsGestion').innerHTML = cvData.habilidades.gestion.map(s => `
+        <span class="bg-slate-200 text-slate-800 text-xs px-2.5 py-1 rounded-md font-medium">${s}</span>
+      `).join('');
+
+      document.getElementById('skillsIdiomas').innerHTML = cvData.habilidades.idiomas.map(i => `
+        <span class="bg-slate-100 border border-slate-200 px-2.5 py-1 rounded text-slate-700"><strong>${i.idioma}:</strong> ${i.nivel}</span>
+      `).join('');
+
+      document.getElementById('skillsOtros').innerHTML = cvData.habilidades.otros.map(o => `
+        <span class="bg-slate-100 border border-slate-200 px-2.5 py-1 rounded text-slate-700">${o}</span>
+      `).join('');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        if (b.getAttribute('data-tab') === tabId) b.classList.add('active');
+      });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById('tab-' + tabId).classList.remove('hidden');
+    }
+
+    function toggleJsonEditor() {
+      const modal = document.getElementById('jsonModal');
+      modal.classList.toggle('hidden');
+    }
+
+    function applyJsonUpdate() {
+      try {
+        cvData = JSON.parse(document.getElementById('rawJsonTextarea').value);
+        renderUI();
+        toggleJsonEditor();
+      } catch (e) {
+        alert("Error en el formato JSON: " + e.message);
+      }
+    }
+
+    renderUI();
+  </script>
+</body>
+</html>
