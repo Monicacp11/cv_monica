@@ -327,7 +327,7 @@
           "centro": "Alcazarén",
           "nivel": "Grado Superior",
           "periodo": "2025",
-          "documento_url": "assets/ts-patronaje-moda.pdf"
+          "en_tramite": true
         }
       ],
       "formacion_no_reglada": [
@@ -437,6 +437,7 @@
       `).join('');
 
       // Render Reglada con enlace a PDF
+      // Render Reglada con enlace a PDF o etiqueta En trámite
       const regContainer = document.getElementById('regladaList');
       regContainer.innerHTML = cvData.formacion_reglada.map(f => `
         <div class="p-3.5 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -446,11 +447,15 @@
           </div>
           <div class="flex items-center gap-2 self-start sm:self-auto">
             <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">${f.periodo}</span>
-            ${f.documento_url ? `
+            ${f.en_tramite ? `
+              <span class="inline-flex items-center gap-1.5 text-xs text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-md font-semibold shadow-xs">
+                <i class="fa-solid fa-hourglass-half text-amber-600 text-[11px] animate-pulse"></i> En trámite
+              </span>
+            ` : (f.documento_url ? `
               <a href="${f.documento_url}" target="_blank" class="no-print inline-flex items-center gap-1.5 text-xs text-blue-700 hover:text-blue-900 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-md border border-blue-200 transition font-semibold">
                 <i class="fa-solid fa-file-pdf text-red-600"></i> Ver Título PDF
               </a>
-            ` : ''}
+            ` : '')}
           </div>
         </div>
       `).join('');
