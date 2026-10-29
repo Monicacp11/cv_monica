@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bloqueo de indexación para motores de búsqueda -->
+  <!-- Protección de privacidad: evita indexación en motores de búsqueda -->
   <meta name="robots" content="noindex, nofollow">
   <title>Mónica Coronado Prats - Candidatura Administrativo General</title>
   
@@ -25,23 +25,23 @@
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-8 px-4">
 
-  <!-- Barra superior de utilidades -->
+  <!-- Barra superior de acciones -->
   <div class="max-w-4xl mx-auto mb-4 no-print flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
     <div class="flex items-center gap-2">
-      <span class="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
+      <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
       <span class="text-sm font-semibold text-slate-700">Expediente Digital · Convocatoria Administrativo General</span>
     </div>
     <div class="flex items-center gap-2">
-      <a href="assets/cv-monica-coronado.pdf" download class="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 transition shadow-sm">
+      <a href="assets/cv-monica-coronado.pdf" download class="px-3.5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 transition shadow-sm">
         <i class="fa-solid fa-file-arrow-down"></i> Descargar CV en PDF
       </a>
-      <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-medium rounded-lg flex items-center gap-1.5 transition">
+      <button onclick="window.print()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-medium rounded-lg flex items-center gap-1.5 transition">
         <i class="fa-solid fa-print"></i> Imprimir
       </button>
     </div>
   </div>
 
-  <!-- Contenedor principal de la hoja A4 -->
+  <!-- Contenedor principal estilo A4 -->
   <main class="sheet-a4 max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200/80 overflow-hidden">
     
     <!-- Encabezado con datos del candidato -->
@@ -93,7 +93,7 @@
       </button>
     </nav>
 
-    <!-- Contenido dinámico -->
+    <!-- Contenido de las pestañas -->
     <div class="p-6 sm:p-8 space-y-6">
       
       <!-- PESTAÑA 1: RESUMEN -->
@@ -137,13 +137,13 @@
             <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Presentación en Vídeo</h2>
           </div>
           <span class="text-xs bg-red-100 text-red-800 font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-            <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> 60 - 90 seg
+            <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> 60 seg
           </span>
         </div>
 
         <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-800 max-w-2xl mx-auto">
           <div id="videoContainer" class="aspect-video w-full bg-black flex items-center justify-center">
-            <!-- Reproductor inyectado dinámicamente -->
+            <!-- Video renderizado dinámicamente -->
           </div>
           <div class="p-4 bg-slate-950 text-slate-300 text-xs flex items-center justify-between gap-4">
             <p id="videoDescription" class="leading-relaxed"></p>
@@ -156,7 +156,7 @@
       <section id="tab-experiencia" class="tab-content hidden space-y-4">
         <div class="flex items-center justify-between border-b border-slate-200 pb-2">
           <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Trayectoria Administrativa</h2>
-          <span class="text-[11px] text-slate-500 italic">Ordenada por idoneidad para el puesto</span>
+          <span class="text-[11px] text-slate-500 italic">Ordenada por idoneidad y relevancia para la plaza</span>
         </div>
         <div id="experienceList" class="space-y-4"></div>
       </section>
@@ -166,7 +166,7 @@
         <div class="flex items-center justify-between border-b border-slate-200 pb-2">
           <div>
             <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Formación Académica Reglada</h2>
-            <p class="text-xs text-slate-500">Títulos oficiales del Ministerio de Educación / FP</p>
+            <p class="text-xs text-slate-500">Títulos oficiales del Ministerio de Educación / FP cotejables</p>
           </div>
           <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-semibold">Cotejo oficial</span>
         </div>
@@ -224,12 +224,13 @@
     <!-- Pie -->
     <footer class="bg-slate-50 border-t border-slate-200 p-4 px-6 sm:px-8 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
       <span>Candidatura oficial: <strong>Administrativo General</strong></span>
-      <span>Documentación y diplomas acreditativos cotejables telemáticamente</span>
+      <span>Expediente digital cotejable telemáticamente</span>
     </footer>
   </main>
 
   <script>
     const cvData = {
+      "version": "1.0",
       "objetivo": {
         "puesto": "Administrativo General",
         "entidad": "Ayuntamiento de Arroyo de la Encomienda"
@@ -237,73 +238,86 @@
       "perfil": {
         "nombre": "Mónica",
         "apellidos": "Coronado Prats",
-        "titular": "Administrativa",
+        "titular": "Administrativa · Candidata a Administrativo General",
         "foto_url": "assets/foto-monica.jpg",
         "contacto": {
           "telefono": "+34 608 938 717",
           "email": "monicaprats11@gmail.com",
           "localidad": "Arroyo de la Encomienda",
           "provincia": "Valladolid"
-        }
+        },
+        "enlaces": [
+          { "etiqueta": "LinkedIn", "url": null }
+        ]
       },
       "video_cv": {
         "activo": true,
         "tipo": "local",
         "url": "assets/video-cv.mp4",
         "poster": "assets/foto-monica.jpg",
-        "descripcion": "Presentación personal y profesional de Mónica Coronado Prats: motivación, competencias administrativas y orientación al servicio público en el Ayuntamiento de Arroyo de la Encomienda."
+        "descripcion": "Presentación de Mónica Coronado Prats: motivación, experiencia previa en el Ayuntamiento de Arroyo de la Encomienda y solvencia en administración electrónica."
       },
-      "extracto": "Administrativa con doble titulación técnica en Gestión Administrativa y Asistencia a la Dirección. Aporta experiencia directa en la administración municipal (Ayuntamiento de Arroyo de la Encomienda) en tramitación de subvenciones y registro/atención ciudadana, combinada con gestión administrativa en el sector privado (proveedores, nóminas y tesorería). Formación continuada en administración electrónica, facturación telemática y ofimática avanzada acreditada por la Junta de Castilla y León.",
+      "extracto": "Administrativa con titulación oficial en Gestión Administrativa y en Asistencia a la Dirección, con experiencia directa en administración local (Ayuntamiento de Arroyo de la Encomienda): tramitación y baremación de expedientes de ayudas, control documental de justificantes de gasto y atención a la ciudadanía. Experiencia complementaria en gestión de personal, compras y facturación. Formación específica en facturación electrónica, ofimática y gestión de documentos PDF (CyL Digital, Junta de Castilla y León, 2025).",
       "experiencia": [
         {
           "entidad": "Ayuntamiento de Arroyo de la Encomienda",
-          "puesto": "Administrativa",
+          "puesto": "Administrativa (Convocatorias y Ayudas)",
           "sector": "público",
-          "periodo_str": "Periodo pendiente de completar",
-          "ubicacion": "Arroyo de la Encomienda (Valladolid)",
           "destacado": true,
+          "periodo": { "inicio": "2021-03", "fin": "2021-06" },
+          "periodo_str": "Marzo 2021 – Junio 2021",
+          "ubicacion": "Arroyo de la Encomienda (Valladolid)",
           "responsabilidades": [
-            "Tramitación, registro y seguimiento de expedientes de subvención en el ámbito municipal.",
-            "Atención presencial y telefónica a la ciudadanía en la resolución de trámites e información general.",
-            "Apoyo logístico y organizativo en eventos municipales aplicando directrices de protocolo institucional y sanitario."
+            "Tramitación, baremación y resolución de más de 200 expedientes de ayudas de material escolar, con adjudicación en plazo en el primer ejercicio.",
+            "Cotejo y auditoría de facturas y justificantes de gasto; interlocución directa con comercios para validar las partidas.",
+            "Atención e información a la ciudadanía (presencial y telefónica): notificación de trámites y subsanación de documentación.",
+            "Colaboración en la definición de criterios y requisitos de acceso para las bases de convocatorias sucesivas.",
+            "Apoyo en eventos municipales conforme a protocolos de seguridad y organización."
           ]
         },
         {
           "entidad": "Domusvi",
-          "puesto": "Asistente a la Dirección",
+          "puesto": "Asistente de Dirección y Gestión Administrativa",
           "sector": "privado",
-          "periodo_str": "Periodo pendiente de completar",
-          "ubicacion": "Valladolid",
           "destacado": false,
+          "periodo": { "inicio": "2022-07", "fin": "2022-10" },
+          "periodo_str": "Julio 2022 – Octubre 2022",
+          "ubicacion": "Valladolid",
           "responsabilidades": [
-            "Gestión integral de facturación, recepción y tramitación de pedidos a proveedores.",
-            "Confección y apoyo en la elaboración de nóminas y control administrativo de personal.",
-            "Gestión de centralita, coordinación de agendas y soporte organizativo a la gerencia."
+            "Gestión administrativa de personal para una plantilla de más de 100 empleados: altas, bajas, partes de IT e incidencias a RRHH.",
+            "Gestión de compras y pedidos a proveedores (más de 30 al mes) y recepción de suministros.",
+            "Revisión, registro y conciliación de facturas con albaranes de entrega.",
+            "Atención de centralita y de familias; soporte organizativo a la dirección del centro."
           ]
         },
         {
           "entidad": "Agro Castilla y León",
-          "puesto": "Administrativa",
+          "puesto": "Auxiliar Administrativa",
           "sector": "privado",
-          "periodo_str": "Periodo pendiente de completar",
-          "ubicacion": "Valladolid",
           "destacado": false,
+          "periodo": { "inicio": "2018-09", "fin": "2019-06" },
+          "periodo_str": "Septiembre 2018 – Junio 2019",
+          "ubicacion": "Valladolid",
           "responsabilidades": [
-            "Recepción y atención a clientes, colaboradores y proveedores.",
-            "Diseño, alimentación y mantenimiento de bases de datos y hojas de cálculo en Microsoft Excel.",
-            "Organización, catalogación y archivo de expedientes y documentación contable."
+            "Digitalización, depuración y control de asientos de facturación y publicidad en Microsoft Excel (regularización de los ejercicios 2015–2019).",
+            "Preparación, tramitación y registro de documentación técnica y expedientes ante la Delegación Territorial de la Junta de Castilla y León.",
+            "Atención al público en ferias sectoriales, punto de información y soporte en la organización de ponencias y eventos corporativos.",
+            "Gestión de centralita telefónica, filtro de comunicaciones y archivo de expedientes rústicos."
           ]
         },
         {
           "entidad": "La Coture",
-          "puesto": "Administración Comercial y Atención al Cliente",
+          "puesto": "Atención al Cliente y Gestión de Catálogo",
           "sector": "privado",
-          "periodo_str": "Periodo pendiente de completar",
-          "ubicacion": "Valladolid",
           "destacado": false,
+          "periodo": { "inicio": "2025-04", "fin": "2025-06" },
+          "periodo_str": "Abril 2025 – Junio 2025",
+          "ubicacion": "Valladolid",
           "responsabilidades": [
-            "Gestión de agenda, reservas de citas y atención telefónica de clientes.",
-            "Administración del catálogo digital y back-office de la tienda online."
+            "Atención presencial y telefónica al cliente, detección de necesidades y asesoramiento personalizado para eventos.",
+            "Control de calidad, medición técnica, estandarización y catalogación del inventario de prendas (tallaje y etiquetado).",
+            "Gestión de agenda y reservas de citas personalizadas con clientes.",
+            "Actualización del catálogo digital y administración del back-office de la tienda online."
           ]
         }
       ],
@@ -311,91 +325,103 @@
         {
           "titulo": "Técnico Superior en Asistencia a la Dirección",
           "centro": "IES Arca Real",
-          "nivel": "Grado Superior (Nivel MECES 1 / EQF 5)",
+          "nivel": "Grado Superior (Nivel MECES 1)",
           "periodo": "2019 – 2021",
-          "documento_url": "assets/ts-asistencia-direccion.pdf"
+          "documento_url": "assets/ts-asistencia-direccion.pdf",
+          "en_tramite": false
         },
         {
           "titulo": "Técnico en Gestión Administrativa",
           "centro": "La Salle",
           "nivel": "Grado Medio",
           "periodo": "2017 – 2019",
-          "documento_url": "assets/tecnico-gestion-adm.pdf"
+          "documento_url": "assets/tecnico-gestion-adm.pdf",
+          "en_tramite": false
         },
         {
           "titulo": "Técnico Superior en Patronaje y Moda",
           "centro": "Alcazarén",
           "nivel": "Grado Superior",
           "periodo": "2025",
+          "documento_url": null,
           "en_tramite": true
         }
       ],
       "formacion_no_reglada": [
         {
+          "titulo": "Gestión digital de la facturación electrónica",
+          "tipo": "Seminario",
+          "area": "Administración electrónica",
+          "horas": 2.5,
+          "evaluacion_aprovechamiento": false,
+          "fecha": "15 Dic 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/f902a460-f9e8-4be1-8755-a3769415cd03"
+        },
+        {
+          "titulo": "Procedimientos, obligaciones legales y recursos online en facturación electrónica",
+          "tipo": "Seminario",
+          "area": "Administración electrónica",
+          "horas": 2.5,
+          "evaluacion_aprovechamiento": false,
+          "fecha": "16 Dic 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/995d7923-f1a1-49eb-aba3-8e777fd1fb23"
+        },
+        {
+          "titulo": "Herramientas digitales, automatización y seguridad aplicada a la facturación electrónica",
+          "tipo": "Seminario",
+          "area": "Administración electrónica",
+          "horas": 2.5,
+          "evaluacion_aprovechamiento": false,
+          "fecha": "17 Dic 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/ef44f9c6-ec9f-490b-b951-c23fd04a6adf"
+        },
+        {
           "titulo": "LibreOffice Impress",
           "tipo": "Curso oficial con aprovechamiento",
+          "area": "Ofimática",
           "horas": 40,
-          "fecha": "Diciembre 2025",
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Nov – Dic 2025",
           "entidad": "Junta de Castilla y León (CyL Digital)",
           "verificacion_url": "https://www.cyldigital.es/ver-diploma/b28c581d-5e3b-4292-a9fb-229900171290"
         },
         {
           "titulo": "Crea y maneja documentos PDF",
           "tipo": "Curso oficial con aprovechamiento",
+          "area": "Gestión documental",
           "horas": 10,
-          "fecha": "Diciembre 2025",
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Dic 2025",
           "entidad": "Junta de Castilla y León (CyL Digital)",
           "verificacion_url": "https://www.cyldigital.es/ver-diploma/fb15059f-011a-4beb-971b-69f6330ddf63"
-        },
-        {
-          "titulo": "Gestión digital de la facturación electrónica",
-          "tipo": "Seminario especializado",
-          "horas": 2.5,
-          "fecha": "15 Diciembre 2025",
-          "entidad": "Junta de Castilla y León (CyL Digital)",
-          "verificacion_url": "https://www.cyldigital.es/ver-diploma/f902a460-f9e8-4be1-8755-a3769415cd03"
-        },
-        {
-          "titulo": "Procedimientos, obligaciones legales y recursos online en facturación electrónica",
-          "tipo": "Seminario especializado",
-          "horas": 2.5,
-          "fecha": "16 Diciembre 2025",
-          "entidad": "Junta de Castilla y León (CyL Digital)",
-          "verificacion_url": "https://www.cyldigital.es/ver-diploma/995d7923-f1a1-49eb-aba3-8e777fd1fb23"
-        },
-        {
-          "titulo": "Herramientas digitales, automatización y seguridad aplicada a la facturación electrónica",
-          "tipo": "Seminario especializado",
-          "horas": 2.5,
-          "fecha": "17 Diciembre 2025",
-          "entidad": "Junta de Castilla y León (CyL Digital)",
-          "verificacion_url": "https://www.cyldigital.es/ver-diploma/ef44f9c6-ec9f-490b-b951-c23fd04a6adf"
         }
       ],
       "habilidades": {
         "tecnicas_digitales": [
-          "Facturación electrónica y telemática",
-          "Microsoft Excel avanzado",
-          "Paquete Office integral",
-          "LibreOffice / Software Libre",
-          "Gestión, edición y ensamblado de PDF",
-          "Mecanografía profesional",
-          "Edición multimedia de soporte"
+          "Facturación electrónica",
+          "Microsoft Excel y Office",
+          "LibreOffice (Impress)",
+          "Gestión y edición de PDF",
+          "Mecanografía",
+          "Edición y creación de vídeo"
         ],
         "gestion": [
-          "Tramitación y archivo de expedientes y subvenciones",
-          "Atención ciudadana presencial y telefónica",
-          "Archivo y catalogación documental",
-          "Facturación, compras y relación con proveedores",
-          "Confección y control de nóminas",
-          "Protocolo y organización de eventos municipales"
+          "Tramitación de expedientes y ayudas",
+          "Archivo y control documental",
+          "Facturación, pedidos y proveedores",
+          "Gestión administrativa de personal",
+          "Atención a la ciudadanía",
+          "Organización de eventos y agenda"
         ],
         "idiomas": [
           { "idioma": "Español", "nivel": "Nativo" },
-          { "idioma": "Inglés", "nivel": "Nivel Intermedio" },
-          { "idioma": "Francés", "nivel": "Nivel Básico" }
+          { "idioma": "Inglés", "nivel": "Medio" },
+          { "idioma": "Francés", "nivel": "Básico" }
         ],
-        "otros": ["Permiso de Conducir B", "Vehículo propio"]
+        "otros": ["Permiso de conducir B"]
       }
     };
 
@@ -421,7 +447,7 @@
       // Render Experiencia
       const expContainer = document.getElementById('experienceList');
       expContainer.innerHTML = cvData.experiencia.map(exp => `
-        <div class="p-4 rounded-xl border ${exp.destacado ? 'border-blue-300 bg-blue-50/40' : 'border-slate-200 bg-white'} space-y-2">
+        <div class="p-4 rounded-xl border ${exp.destacado ? 'border-blue-300 bg-blue-50/40 shadow-xs' : 'border-slate-200 bg-white'} space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
             <div class="flex items-center gap-2">
               <span class="font-bold text-slate-800 text-sm">${exp.puesto}</span>
@@ -429,15 +455,14 @@
             </div>
             <span class="text-xs font-semibold text-slate-500">${exp.periodo_str}</span>
           </div>
-          <div class="text-xs font-medium text-blue-900">${exp.entidad} ${exp.ubicacion ? '· ' + exp.ubicacion : ''}</div>
+          <div class="text-xs font-medium text-blue-900">${exp.entidad} · ${exp.ubicacion}</div>
           <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 pt-1">
             ${exp.responsabilidades.map(r => `<li>${r}</li>`).join('')}
           </ul>
         </div>
       `).join('');
 
-      // Render Reglada con enlace a PDF
-      // Render Reglada con enlace a PDF o etiqueta En trámite
+      // Render Reglada con Títulos PDF y etiqueta En trámite
       const regContainer = document.getElementById('regladaList');
       regContainer.innerHTML = cvData.formacion_reglada.map(f => `
         <div class="p-3.5 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -448,7 +473,7 @@
           <div class="flex items-center gap-2 self-start sm:self-auto">
             <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">${f.periodo}</span>
             ${f.en_tramite ? `
-              <span class="inline-flex items-center gap-1.5 text-xs text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-md font-semibold shadow-xs">
+              <span class="inline-flex items-center gap-1.5 text-xs text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-md font-semibold">
                 <i class="fa-solid fa-hourglass-half text-amber-600 text-[11px] animate-pulse"></i> En trámite
               </span>
             ` : (f.documento_url ? `
@@ -468,6 +493,7 @@
             <div class="flex items-center gap-2">
               <span class="text-xs font-bold text-slate-800">${c.titulo}</span>
               <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${c.horas >= 10 ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-slate-100 text-slate-600'}">${c.horas} h</span>
+              ${c.evaluacion_aprovechamiento ? '<span class="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1.5 py-0.5 rounded font-medium">Con aprovechamiento</span>' : ''}
             </div>
             <div class="text-[11px] text-slate-500">${c.entidad} · ${c.fecha}</div>
           </div>
@@ -506,7 +532,7 @@
       document.getElementById('tab-' + tabId).classList.remove('hidden');
     }
 
-    // Inicialización al cargar la página
+    // Inicializar interfaz
     renderUI();
   </script>
 </body>
