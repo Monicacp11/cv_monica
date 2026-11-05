@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Protección de privacidad: evita indexación en motores de búsqueda -->
+  <!-- Bloqueo de indexación para motores de búsqueda -->
   <meta name="robots" content="noindex, nofollow">
   <title>Mónica Coronado Prats - Candidatura Administrativo General</title>
   
@@ -25,7 +25,7 @@
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-8 px-4">
 
-  <!-- Barra superior de acciones -->
+  <!-- Barra superior de utilidades -->
   <div class="max-w-4xl mx-auto mb-4 no-print flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
     <div class="flex items-center gap-2">
       <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <!-- Contenedor principal estilo A4 -->
+  <!-- Contenedor principal de la hoja A4 -->
   <main class="sheet-a4 max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200/80 overflow-hidden">
     
     <!-- Encabezado con datos del candidato -->
@@ -86,14 +86,14 @@
         <i class="fa-solid fa-graduation-cap mr-1.5"></i> Formación Oficial y Títulos
       </button>
       <button onclick="switchTab('certificaciones')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="certificaciones">
-        <i class="fa-solid fa-stamp mr-1.5"></i> Cursos CyL Digital (57,5 h)
+        <i class="fa-solid fa-stamp mr-1.5"></i> Cursos CyL Digital (137,5 h)
       </button>
       <button onclick="switchTab('competencias')" class="tab-btn px-4 py-3 text-xs sm:text-sm font-semibold border-b-2 border-transparent text-slate-600 hover:text-blue-900 whitespace-nowrap transition" data-tab="competencias">
         <i class="fa-solid fa-sliders mr-1.5"></i> Competencias
       </button>
     </nav>
 
-    <!-- Contenido de las pestañas -->
+    <!-- Contenido dinámico -->
     <div class="p-6 sm:p-8 space-y-6">
       
       <!-- PESTAÑA 1: RESUMEN -->
@@ -143,7 +143,7 @@
 
         <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-800 max-w-2xl mx-auto">
           <div id="videoContainer" class="aspect-video w-full bg-black flex items-center justify-center">
-            <!-- Video renderizado dinámicamente -->
+            <!-- Reproductor inyectado dinámicamente -->
           </div>
           <div class="p-4 bg-slate-950 text-slate-300 text-xs flex items-center justify-between gap-4">
             <p id="videoDescription" class="leading-relaxed"></p>
@@ -156,7 +156,7 @@
       <section id="tab-experiencia" class="tab-content hidden space-y-4">
         <div class="flex items-center justify-between border-b border-slate-200 pb-2">
           <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide">Trayectoria Administrativa</h2>
-          <span class="text-[11px] text-slate-500 italic">Ordenada por idoneidad y relevancia para la plaza</span>
+          <span class="text-[11px] text-slate-500 italic">Ordenada por idoneidad para el puesto</span>
         </div>
         <div id="experienceList" class="space-y-4"></div>
       </section>
@@ -181,7 +181,7 @@
             <p class="text-xs text-slate-500">Expedida por la Junta de Castilla y León · Verificable telemáticamente</p>
           </div>
           <span class="inline-flex items-center gap-1 self-start sm:self-auto text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">
-            <i class="fa-solid fa-clock"></i> 57,5 Horas Totales
+            <i class="fa-solid fa-clock"></i> 137,5 Horas Totales
           </span>
         </div>
         <div id="noRegladaList" class="space-y-2.5"></div>
@@ -255,9 +255,9 @@
         "tipo": "local",
         "url": "assets/video-cv.mp4",
         "poster": "assets/foto-monica.jpg",
-        "descripcion": "Presentación de Mónica Coronado Prats: motivación, experiencia previa en el Ayuntamiento de Arroyo de la Encomienda y solvencia en administración electrónica."
+        "descripcion": "Presentación personal y profesional de Mónica Coronado Prats: motivación, experiencia previa en el Ayuntamiento de Arroyo de la Encomienda y solvencia en administración electrónica."
       },
-      "extracto": "Administrativa con titulación oficial en Gestión Administrativa y en Asistencia a la Dirección, con experiencia directa en administración local (Ayuntamiento de Arroyo de la Encomienda): tramitación y baremación de expedientes de ayudas, control documental de justificantes de gasto y atención a la ciudadanía. Experiencia complementaria en gestión de personal, compras y facturación. Formación específica en facturación electrónica, ofimática y gestión de documentos PDF (CyL Digital, Junta de Castilla y León, 2025).",
+      "extracto": "Administrativa con titulación oficial en Gestión Administrativa y en Asistencia a la Dirección, con experiencia directa en administración local (Ayuntamiento de Arroyo de la Encomienda): tramitación y baremación de expedientes de ayudas, control documental de justificantes de gasto y atención a la ciudadanía. Experiencia complementaria en gestión de personal, compras y facturación. Formación específica en facturación electrónica, ofimática (LibreOffice, Google Workspace), gestión de documentos PDF y comunicación en redes sociales (CyL Digital, Junta de Castilla y León, 2025-2026).",
       "experiencia": [
         {
           "entidad": "Ayuntamiento de Arroyo de la Encomienda",
@@ -349,6 +349,46 @@
       ],
       "formacion_no_reglada": [
         {
+          "titulo": "Herramientas de Google",
+          "tipo": "Curso",
+          "area": "Ofimática y herramientas digitales",
+          "horas": 60,
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Ene – Feb 2026",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/cc9d52d6-00fb-4c2a-9667-f1a22fe5364f"
+        },
+        {
+          "titulo": "Community Manager: planificación estratégica de redes sociales",
+          "tipo": "Curso",
+          "area": "Comunicación digital",
+          "horas": 20,
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Feb 2026",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/b9192101-247c-4f15-9b36-ba7b473fe26b"
+        },
+        {
+          "titulo": "LibreOffice Impress",
+          "tipo": "Curso oficial con aprovechamiento",
+          "area": "Ofimática",
+          "horas": 40,
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Nov – Dic 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/b28c581d-5e3b-4292-a9fb-229900171290"
+        },
+        {
+          "titulo": "Crea y maneja documentos PDF",
+          "tipo": "Curso oficial con aprovechamiento",
+          "area": "Gestión documental",
+          "horas": 10,
+          "evaluacion_aprovechamiento": true,
+          "fecha": "Dic 2025",
+          "entidad": "Junta de Castilla y León (CyL Digital)",
+          "verificacion_url": "https://www.cyldigital.es/ver-diploma/fb15059f-011a-4beb-971b-69f6330ddf63"
+        },
+        {
           "titulo": "Gestión digital de la facturación electrónica",
           "tipo": "Seminario",
           "area": "Administración electrónica",
@@ -377,36 +417,18 @@
           "fecha": "17 Dic 2025",
           "entidad": "Junta de Castilla y León (CyL Digital)",
           "verificacion_url": "https://www.cyldigital.es/ver-diploma/ef44f9c6-ec9f-490b-b951-c23fd04a6adf"
-        },
-        {
-          "titulo": "LibreOffice Impress",
-          "tipo": "Curso oficial con aprovechamiento",
-          "area": "Ofimática",
-          "horas": 40,
-          "evaluacion_aprovechamiento": true,
-          "fecha": "Nov – Dic 2025",
-          "entidad": "Junta de Castilla y León (CyL Digital)",
-          "verificacion_url": "https://www.cyldigital.es/ver-diploma/b28c581d-5e3b-4292-a9fb-229900171290"
-        },
-        {
-          "titulo": "Crea y maneja documentos PDF",
-          "tipo": "Curso oficial con aprovechamiento",
-          "area": "Gestión documental",
-          "horas": 10,
-          "evaluacion_aprovechamiento": true,
-          "fecha": "Dic 2025",
-          "entidad": "Junta de Castilla y León (CyL Digital)",
-          "verificacion_url": "https://www.cyldigital.es/ver-diploma/fb15059f-011a-4beb-971b-69f6330ddf63"
         }
       ],
       "habilidades": {
         "tecnicas_digitales": [
-          "Facturación electrónica",
-          "Microsoft Excel y Office",
+          "Paquete Office y Excel",
           "LibreOffice (Impress)",
-          "Gestión y edición de PDF",
+          "Google Workspace (Drive, Docs, Sheets, Forms)",
+          "Facturación electrónica",
+          "Gestión y edición de documentos PDF",
           "Mecanografía",
-          "Edición y creación de vídeo"
+          "Edición y creación de vídeo",
+          "Community Management y Redes Sociales"
         ],
         "gestion": [
           "Tramitación de expedientes y ayudas",
@@ -532,7 +554,7 @@
       document.getElementById('tab-' + tabId).classList.remove('hidden');
     }
 
-    // Inicializar interfaz
+    // Inicialización al cargar la página
     renderUI();
   </script>
 </body>
