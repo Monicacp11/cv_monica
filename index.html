@@ -6,7 +6,10 @@
   <!-- Bloqueo de indexación para motores de búsqueda -->
   <meta name="robots" content="noindex, nofollow">
   <title>Mónica Coronado Prats - Candidatura Administrativo General</title>
+  
+  <!-- Favicon corporativo MC -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231e3a8a'/><text x='50%' y='54%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='28' fill='%23ffffff' letter-spacing='-1'>MC</text></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -263,6 +266,7 @@
           "entidad": "Ayuntamiento de Arroyo de la Encomienda",
           "puesto": "Administrativa (Convocatorias y Ayudas)",
           "sector": "público",
+          "tipo": "practicas",
           "destacado": true,
           "periodo": { "inicio": "2021-03", "fin": "2021-06" },
           "periodo_str": "Marzo 2021 – Junio 2021",
@@ -279,6 +283,7 @@
           "entidad": "Domusvi",
           "puesto": "Asistente de Dirección y Gestión Administrativa",
           "sector": "privado",
+          "tipo": "laboral",
           "destacado": false,
           "periodo": { "inicio": "2022-07", "fin": "2022-10" },
           "periodo_str": "Julio 2022 – Octubre 2022",
@@ -294,6 +299,7 @@
           "entidad": "Agro Castilla y León",
           "puesto": "Auxiliar Administrativa",
           "sector": "privado",
+          "tipo": "practicas",
           "destacado": false,
           "periodo": { "inicio": "2018-09", "fin": "2019-06" },
           "periodo_str": "Septiembre 2018 – Junio 2019",
@@ -309,6 +315,7 @@
           "entidad": "La Coture",
           "puesto": "Atención al Cliente y Gestión de Catálogo",
           "sector": "privado",
+          "tipo": "laboral",
           "destacado": false,
           "periodo": { "inicio": "2025-04", "fin": "2025-06" },
           "periodo_str": "Abril 2025 – Junio 2025",
@@ -466,14 +473,18 @@
         `;
       }
 
-      // Render Experiencia
+      // Render Experiencia con etiquetas [Laboral] / [Prácticas]
       const expContainer = document.getElementById('experienceList');
       expContainer.innerHTML = cvData.experiencia.map(exp => `
         <div class="p-4 rounded-xl border ${exp.destacado ? 'border-blue-300 bg-blue-50/40 shadow-xs' : 'border-slate-200 bg-white'} space-y-2">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-1.5">
               <span class="font-bold text-slate-800 text-sm">${exp.puesto}</span>
-              ${exp.sector === 'público' ? '<span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">ADMINISTRACIÓN PÚBLICA</span>' : ''}
+              ${exp.sector === 'público' ? '<span class="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded tracking-wide">ADMINISTRACIÓN PÚBLICA</span>' : ''}
+              ${exp.tipo === 'laboral' 
+                ? '<span class="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold px-1.5 py-0.5 rounded tracking-wide">[Laboral]</span>' 
+                : '<span class="text-[10px] bg-slate-200 text-slate-700 border border-slate-300 font-semibold px-1.5 py-0.5 rounded tracking-wide">[Prácticas]</span>'
+              }
             </div>
             <span class="text-xs font-semibold text-slate-500">${exp.periodo_str}</span>
           </div>
